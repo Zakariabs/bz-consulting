@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* Account for fixed navbar */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,4 +19,51 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Custom animation for fade-in-down effect */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.3s ease-out forwards;
+}
+
+/* Improve tap target sizes on mobile */
+@media (max-width: 640px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  input, select, textarea {
+    font-size: 16px; /* Prevents iOS zoom on input */
+  }
+}
+
+/* Add additional spacing for mobile screens */
+@media (max-width: 640px) {
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1, h2, h3 {
+    word-break: break-word;
+  }
+}
+
+/* Fix iOS 100vh issue */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
 }
